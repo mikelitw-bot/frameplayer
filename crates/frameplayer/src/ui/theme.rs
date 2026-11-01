@@ -6,7 +6,7 @@ use egui::{
     Color32, CornerRadius, FontData, FontDefinitions, FontFamily, FontId, Shadow, Stroke,
     TextStyle, Visuals,
 };
-use std::sync::Arc;
+use std::sync::{Arc, OnceLock};
 
 // Surfaces, darkest first.
 pub const BG: Color32 = Color32::from_rgb(13, 16, 21);
@@ -81,18 +81,23 @@ const CJK_FONT_PATHS: &[&str] = &[
 /// The Traditional Chinese face in that collection; JP is 0, KR 1, SC 2.
 const CJK_TC_FACE: u32 = 3;
 
+/// Read once and shared: every UI panel has its own egui context.
 fn cjk_font() -> Option<Arc<FontData>> {
-    let found = CJK_FONT_PATHS
-        .iter()
-        .find_map(|p| std::fs::read(p).ok().map(|bytes| (*p, bytes)));
-    let Some((path, bytes)) = found else {
-        log::warn!("no CJK font found; Chinese text will not display");
-        return None;
-    };
-    log::info!("CJK font: {path}");
-    let mut data = FontData::from_owned(bytes);
-    data.index = CJK_TC_FACE;
-    Some(Arc::new(data))
+    static FONT: OnceLock<Option<Arc<FontData>>> = OnceLock::new();
+    FONT.get_or_init(|| {
+        let found = CJK_FONT_PATHS
+            .iter()
+            .find_map(|p| std::fs::read(p).ok().map(|bytes| (*p, bytes)));
+        let Some((path, bytes)) = found else {
+            log::warn!("no CJK font found; Chinese text will not display");
+            return None;
+        };
+        log::info!("CJK font: {path}");
+        let mut data = FontData::from_owned(bytes);
+        data.index = CJK_TC_FACE;
+        Some(Arc::new(data))
+    })
+    .clone()
 }
 
 fn fonts() -> FontDefinitions {

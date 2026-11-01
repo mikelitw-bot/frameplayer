@@ -1,3 +1,16 @@
+> **Unofficial fork** of [yellkell/frameplayer](https://github.com/yellkell/frameplayer)
+> by yellkell, not affiliated with or endorsed by the original author.
+> Based on `v0.3.0-alpha.20`. Changes, on branch `mike/main`:
+>
+> - Chinese text in the UI and subtitles, using the system's Noto Sans CJK
+> - Big5, GBK and UTF-16 subtitle files converted to UTF-8
+> - Panels come back in front of you when tracking relocalises
+> - 10-bit video decoded in software instead of showing green or stalling
+> - In-app updates off, so an upstream release can't replace this build
+> - Docker build environment in `tools/docker`
+>
+> The original README follows. The license is unchanged.
+
 # FramePlayer
 
 A native Linux ARM64 VR video player for the Valve Steam Frame. Aims to be a complete, open-source DeoVR replacement with one-click installation.

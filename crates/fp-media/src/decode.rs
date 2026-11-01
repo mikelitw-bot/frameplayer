@@ -113,9 +113,10 @@ fn v4l2_name(codec: ff::AVCodecID) -> Option<&'static CStr> {
     }
 }
 
-/// The preference for a stream of pixel format `format`. The Frame's hardware
-/// decoder outputs 8-bit only. FFmpeg's V4L2 wrapper still opens a 10-bit
-/// stream, then shows it with broken colours or stalls, and no error says so.
+/// The preference for a stream of pixel format `format`. Only 8-bit 4:2:0 has
+/// a working hardware path on the Frame: FFmpeg's V4L2 wrapper still opens a
+/// 10-bit stream, then shows it with broken colours or stalls, with no error
+/// to fall back on.
 fn hw_for_format(hw: HwDecode, format: i32) -> HwDecode {
     if crate::v4l2::eight_bit_420(format) {
         hw

@@ -3,3 +3,11 @@
 /third_party/
 /.claude/
 /dist/
+
+# Secrets (project security baseline)
+.env
+.env*
+*.key
+*.pem
+token*.json
+credentials*.json

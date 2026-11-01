@@ -1,15 +1,46 @@
-> **Unofficial fork** of [yellkell/frameplayer](https://github.com/yellkell/frameplayer)
-> by yellkell, not affiliated with or endorsed by the original author.
-> Based on `v0.3.0-alpha.20`. Changes, on branch `mike/main`:
->
-> - Chinese text in the UI and subtitles, using the system's Noto Sans CJK
-> - Big5, GBK and UTF-16 subtitle files converted to UTF-8
-> - Panels come back in front of you when tracking relocalises
-> - 10-bit video decoded in software instead of showing green or stalling
-> - In-app updates off, so an upstream release can't replace this build
-> - Docker build environment in `tools/docker`
->
-> The original README follows. The license is unchanged.
+# FramePlayer (Mike's fork)
+
+**Unofficial fork** of [yellkell/frameplayer](https://github.com/yellkell/frameplayer), not affiliated with or endorsed by the original author. All credit for FramePlayer goes to yellkell.
+
+這是 Valve Steam Frame 影片播放器 FramePlayer 的非官方個人 fork，以 `v0.3.0-alpha.20` 為基礎，主要補上中文使用需要的修正。
+
+## 和原版的差異
+
+| 改動 | 解決的問題 | 給原作者的 PR |
+|---|---|---|
+| 中文介面與字幕 | 中文檔名和字幕顯示不出來，現在使用系統的 Noto Sans CJK | [#8](https://github.com/yellkell/frameplayer/pull/8) |
+| 字幕編碼轉換 | Big5、GBK、UTF-16 字幕檔會被丟掉，現在自動轉成 UTF-8 | [#8](https://github.com/yellkell/frameplayer/pull/8) |
+| 10-bit 影片改走軟解 | 10-bit H.265 綠屏、破圖或卡住 | [#6](https://github.com/yellkell/frameplayer/pull/6) |
+| 追蹤跳動時移回選單 | 啟動後畫面全黑，選單其實被甩到背後 | [#7](https://github.com/yellkell/frameplayer/pull/7) |
+| 關閉 App 內更新 | 避免原版更新蓋掉這個 build（只屬於這個 fork） | — |
+| Docker 建置環境 | 可在 Apple Silicon Mac 上編譯（只屬於這個 fork） | — |
+
+## 使用限制
+
+- 10-bit 影片是軟解，4K 通常跑得動，但 8K、高位元率或高幀率片源可能掉幀，也比較耗電。
+- 中文字型來自系統，SteamOS 內建；系統沒有這套字型時，中文不會顯示，其他功能不受影響。
+- 內嵌在 MKV 裡的非 UTF-8 字幕不會轉換，很短的非 UTF-8 字幕檔也可能判斷錯編碼。
+- 這個 fork 不提供編譯好的安裝包，也不會自動更新，要自己編譯。
+
+## 自己編譯
+
+需要 Docker，指令在 [CLAUDE.md](CLAUDE.md) 的「建置與測試」和「部署到 Frame」。
+
+```bash
+git clone https://github.com/mikelitw-bot/frameplayer.git
+cd frameplayer
+docker build -t frame-player-build tools/docker
+```
+
+輸出的 zip 在 `dist/`，解壓到 Frame 的 `~/devkit-game/FramePlayer` 後，用 Steam 捷徑啟動。
+
+## 授權
+
+和原版相同，採 [Apache License 2.0](LICENSE-APACHE) 或 [MIT](LICENSE-MIT) 雙授權，原作者的版權聲明維持不變。
+
+---
+
+以下是原版 README。
 
 # FramePlayer
 

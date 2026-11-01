@@ -6,6 +6,8 @@ capsule 600x900, hero 3840x1240, logo 1280x720 (transparent), wide capsule
 920x430 and a 256x256 icon. The mark is the one on yellkell.com/frame: a
 headset whose two lenses are globes. Needs Pillow; uses FramePlayer's Inter.
     python3 tools/webxr/make-chromium-xr-artwork.py
+
+This fork ships hand-made artwork instead: running this replaces it.
 """
 import math
 from pathlib import Path

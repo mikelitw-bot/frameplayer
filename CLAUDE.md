@@ -17,7 +17,7 @@
 
 - `crates/fp-updater/src/lib.rs` 的 `RELEASE_PUBLIC_KEY = None`，避免原作者的新版蓋掉這個 build。
 - `tools/docker/`、`mike` 版本號、README 開頭的 fork 說明、這份文件。
-- `assets/steam/` 的自製封面。
+- `assets/steam/` 和 `tools/webxr/frame-title/steam/` 的自製封面。
 - `.gitignore` 的機密規則區塊。
 
 其他修正都已拆成 PR 送給原作者，狀態見 README。送 PR 時：
@@ -88,7 +88,7 @@ XDG_CONFIG_HOME=$T/cfg XDG_DATA_HOME=$T/data LD_LIBRARY_PATH=$PWD/lib timeout 40
 
 ## Steam 封面
 
-來源在 `assets/steam/`，由 Mike 自製。不要跑 `tools/make-artwork.py`，它會用原版設計蓋掉這些圖。
+FramePlayer 的來源在 `assets/steam/`，Chromium XR 的在 `tools/webxr/frame-title/steam/`，都由 Mike 自製。不要跑 `tools/make-artwork.py` 和 `tools/webxr/make-chromium-xr-artwork.py`，它們會用原版設計蓋掉這些圖。
 
 | 用途 | 尺寸 | Repo | `.frame-artwork/artwork/` | Steam `config/grid/` |
 |---|---|---|---|---|
@@ -98,8 +98,9 @@ XDG_CONFIG_HOME=$T/cfg XDG_DATA_HOME=$T/data LD_LIBRARY_PATH=$PWD/lib timeout 40
 | Logo | 1280×720 | `logo.png` | `logo.png` | `<id>_logo.png` |
 | 圖示 | 512×512 | `icon.png` | `icon.png` | 無，`shortcuts.vdf` 指向 `.frame-artwork` |
 
+- Chromium XR 的原始封面備份在 Frame 的 `~/devkit-game/Chromium_XR.artwork-original`。
 - Logo 刻意全透明：Hero 已有文字，Steam 又會把 logo 疊在 Hero 上。
-- `<id>` 是 Frame 上的捷徑 ID，在 `~/devkit-game/FramePlayer-framecontrol.json` 的 `shortcut`。
+- `<id>` 是 Frame 上的捷徑 ID，在 `~/devkit-game/<App>-framecontrol.json` 的 `shortcut`。
 - 換封面後要重啟 Steam 才會更新快取。
 
 ## Push 前必查

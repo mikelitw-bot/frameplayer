@@ -17,6 +17,7 @@
 
 - `crates/fp-updater/src/lib.rs` 的 `RELEASE_PUBLIC_KEY = None`，避免原作者的新版蓋掉這個 build。
 - `tools/docker/`、`mike` 版本號、README 開頭的 fork 說明、這份文件。
+- `assets/steam/` 的自製封面。
 - `.gitignore` 的機密規則區塊。
 
 其他修正都已拆成 PR 送給原作者，狀態見 README。送 PR 時：
@@ -84,6 +85,22 @@ XDG_CONFIG_HOME=$T/cfg XDG_DATA_HOME=$T/data LD_LIBRARY_PATH=$PWD/lib timeout 40
 - **Docker 檔案同步**：剛改完檔案馬上跑，可能讀到舊內容或截斷的檔案（會看到奇怪的 `unclosed delimiter`）。等幾秒重跑，測試結果不合理時先 `touch` 改過的檔案。
 - **zsh**：`"$1:rate"` 的 `:r` 會被當修飾字，要寫 `"${1}:rate"`；`scp frame:/path/*.png` 的星號也會被本機展開。
 - **Docker image 沒有 clippy 和 rustfmt**：需要的話先 `rustup component add clippy rustfmt`。
+
+## Steam 封面
+
+來源在 `assets/steam/`，由 Mike 自製。不要跑 `tools/make-artwork.py`，它會用原版設計蓋掉這些圖。
+
+| 用途 | 尺寸 | Repo | `.frame-artwork/artwork/` | Steam `config/grid/` |
+|---|---|---|---|---|
+| 直式封面 | 600×900 | `portrait.png` | `grid.png` | `<id>p.png` |
+| 橫式封面 | 920×430 | `capsule.png` | `wide.png` | `<id>.png` |
+| 頁面橫幅 | 1920×620 | `hero.png` | `hero.png` | `<id>_hero.png` |
+| Logo | 1280×720 | `logo.png` | `logo.png` | `<id>_logo.png` |
+| 圖示 | 512×512 | `icon.png` | `icon.png` | 無，`shortcuts.vdf` 指向 `.frame-artwork` |
+
+- Logo 刻意全透明：Hero 已有文字，Steam 又會把 logo 疊在 Hero 上。
+- `<id>` 是 Frame 上的捷徑 ID，在 `~/devkit-game/FramePlayer-framecontrol.json` 的 `shortcut`。
+- 換封面後要重啟 Steam 才會更新快取。
 
 ## Push 前必查
 

@@ -14,6 +14,7 @@
 | 追蹤跳動時移回選單 | 啟動後畫面全黑，選單其實被甩到背後 | [#7](https://github.com/yellkell/frameplayer/pull/7) |
 | 關閉 App 內更新 | 避免原版更新蓋掉這個 build（只屬於這個 fork） | — |
 | Docker 建置環境 | 可在 Apple Silicon Mac 上編譯（只屬於這個 fork） | — |
+| Steam 封面 | 自製的遊戲庫封面、橫幅和圖示（只屬於這個 fork） | — |
 
 ## 使用限制
 

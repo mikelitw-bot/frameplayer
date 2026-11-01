@@ -5,6 +5,8 @@ Sizes follow Steam's non-Steam-game artwork: portrait capsule 600x900,
 hero 3840x1240, logo 1280x720 (transparent), wide capsule 920x430 and a
 256x256 icon. Needs Pillow and the DejaVu fonts. Re-run after design changes:
     python3 tools/make-artwork.py
+
+This fork ships hand-made artwork instead: running this replaces it.
 """
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter, ImageFont

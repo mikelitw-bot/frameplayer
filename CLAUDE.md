@@ -110,4 +110,16 @@ FramePlayer 的來源在 `assets/steam/`，Chromium XR 的在 `tools/webxr/frame
 3. 掃 diff：沒有 API key、密碼、Bearer token、個人路徑或影片來源網址。
 4. commit 作者用 GitHub noreply 信箱。
 
-`dist/`、`target/`、`third_party/` 都不進 git。沒有確認過 `packaging/licenses/THIRD-PARTY.txt` 的條款之前，不要公開發布編譯好的 zip。另外 `tools/package.sh` 預設的下載網址指向原作者，發布時要用 `--url-base` 改掉。
+`dist/`、`target/`、`third_party/` 都不進 git。
+
+## 發布 Release
+
+授權已在 mike.4 檢查過：FFmpeg 是 LGPL 動態連結，沒有 GPL 或 non-free 元件，授權檔和 `rust-crates.txt` 由 `tools/package.sh` 自動放進 zip。換 FFmpeg 設定或新增依賴時要重看 `packaging/licenses/THIRD-PARTY.txt`。
+
+1. 版本號加一，`Cargo.lock` 裡 `frameplayer` 的版本也要一起改，否則 `--locked` 會失敗。
+2. 跑完整測試。
+3. 打包時一定要加 `--url-base https://github.com/mikelitw-bot/frameplayer/releases/download/v<版本>`，預設指向原作者。
+4. 檢查 zip：`licenses/` 完整，`strings frameplayer` 沒有個人路徑或影片來源。
+5. 跑 push 前檢查，commit、push，再用 `gh release create v<版本> --target mike/main` 上傳 zip、`framedrop.json`、`frameplayer.json`。
+6. 不要上傳 `manifest.json`：這個 fork 關掉了 App 內更新，它沒有用途，也沒有簽章。
+7. Release 說明要寫清楚：個人改版、不會自動更新、問題回報到這個 fork，以及 Frame Control 安裝連結 `frame-control://install?manifest=<framedrop.json 網址>`。

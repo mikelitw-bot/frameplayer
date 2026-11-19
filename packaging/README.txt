@@ -22,4 +22,8 @@ Videos in ~/Videos, ~/Downloads and on microSD cards / USB drives are added
 to the library automatically. Haptic scripts (.funscript) next to a video or
 in ~/Interactive are picked up too.
 
-Project page: https://github.com/yellkell/frameplayer
+This is a personal fork with Chinese text, 10-bit decoding and recentering
+fixes. It does not update itself; get new versions from the fork's releases.
+
+Fork:     https://github.com/mikelitw-bot/frameplayer (report problems here)
+Original: https://github.com/yellkell/frameplayer

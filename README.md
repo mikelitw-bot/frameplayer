@@ -21,7 +21,11 @@
 - 10-bit 影片是軟解，4K 通常跑得動，但 8K、高位元率或高幀率片源可能掉幀，也比較耗電。
 - 中文字型來自系統，SteamOS 內建；系統沒有這套字型時，中文不會顯示，其他功能不受影響。
 - 內嵌在 MKV 裡的非 UTF-8 字幕不會轉換，很短的非 UTF-8 字幕檔也可能判斷錯編碼。
-- 這個 fork 不提供編譯好的安裝包，也不會自動更新，要自己編譯。
+- 這個 fork 不會自動更新，新版要到 [Releases](https://github.com/mikelitw-bot/frameplayer/releases) 下載。
+
+## 下載安裝
+
+到 [Releases](https://github.com/mikelitw-bot/frameplayer/releases) 下載最新的 zip，安裝方式寫在各版本的說明裡。問題請開 [Issue](https://github.com/mikelitw-bot/frameplayer/issues) 回報到這裡，不要找原作者。
 
 ## 自己編譯
 

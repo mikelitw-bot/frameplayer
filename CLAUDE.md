@@ -102,6 +102,7 @@ FramePlayer 的來源在 `assets/steam/`，Chromium XR 的在 `tools/webxr/frame
 - Logo 刻意全透明：Hero 已有文字，Steam 又會把 logo 疊在 Hero 上。
 - `<id>` 是 Frame 上的捷徑 ID，在 `~/devkit-game/<App>-framecontrol.json` 的 `shortcut`。
 - 換封面後要重啟 Steam 才會更新快取。
+- **Frame Control 網址安裝會換掉封面**：它只讀 title 資料夾最上層的 `icon.png`（`tools/package.sh` 會從 `assets/steam/` 複製一份），再查 SteamGridDB，其餘封面由它自己產生。裝完要從備份或 repo 把五張圖蓋回 `.frame-artwork/artwork/` 和 Steam `config/grid/`。
 
 ## Push 前必查
 

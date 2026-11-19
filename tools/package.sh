@@ -48,6 +48,8 @@ done
 cp packaging/frameplayer.sh packaging/README.txt LICENSE-MIT LICENSE-APACHE "$stage/"
 cp packaging/licenses/* "$stage/licenses/"
 cp assets/steam/*.png "$stage/assets/steam/"
+# Frame Control's web install only reads icon.png at the title root.
+cp assets/steam/icon.png "$stage/icon.png"
 echo "$version" > "$stage/VERSION"
 # Licences of the Rust crates compiled into the binary.
 cargo metadata --format-version 1 --filter-platform "$target" | python3 -c '

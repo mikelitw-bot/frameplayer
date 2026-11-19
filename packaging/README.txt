@@ -9,6 +9,7 @@ Files
   frameplayer.sh     launcher (sets up lib/)
   lib/               FFmpeg 7.1.1 + dav1d 1.5.3 (LGPL / BSD), see licenses/
   assets/steam/      Steam library artwork
+  icon.png           icon for Frame Control installs
   VERSION            installed version
   LICENSE-*          FramePlayer itself: MIT or Apache-2.0, your choice
 
